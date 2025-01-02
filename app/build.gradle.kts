@@ -34,6 +34,11 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	implementation("org.projectlombok:lombok:1.18.36")
 	annotationProcessor("org.projectlombok:lombok:1.18.36")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-validation:2.5.4")
+	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("com.h2database:h2")
 }
 
 tasks.withType<Test> {

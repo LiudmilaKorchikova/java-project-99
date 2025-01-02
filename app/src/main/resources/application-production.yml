@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-ctrd9u3qf0us73862s9g-a:5432/tasks_manager_database
+    driver-class-name: org.postgresql.Driver
+    username: tasks_manager_database_user
+    password: fFIDJoNYdnfEFZkHC3h2k8pRBsL8yK1E
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

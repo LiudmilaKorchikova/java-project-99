@@ -1,5 +1,6 @@
 plugins {
 	java
+	application
 	id("org.springframework.boot") version "3.1.4"
 	id("io.spring.dependency-management") version "1.1.7"
 }
@@ -11,6 +12,10 @@ java {
 	toolchain {
 		languageVersion.set(JavaLanguageVersion.of(21))
 	}
+}
+
+application {
+	mainClass.set("hexlet.code.app.AppApplication")
 }
 
 repositories {

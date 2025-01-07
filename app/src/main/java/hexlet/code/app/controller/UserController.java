@@ -1,8 +1,10 @@
 package hexlet.code.app.controller;
 
 import hexlet.code.app.model.User;
+import hexlet.code.app.security.JwtTokenProvider;
 import hexlet.code.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JwtTokenProvider tokenProvider;
 
     @GetMapping
     public List<User> getAllUsers() {

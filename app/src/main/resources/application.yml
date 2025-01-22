@@ -3,3 +3,11 @@ spring:
     active: development
   application:
     name: app
+  jpa:
+    open-in-view: false
+rsa:
+  private-key: classpath:private.pem
+  public-key: classpath:public.pem
+server:
+  servlet:
+    context-path: /myApp

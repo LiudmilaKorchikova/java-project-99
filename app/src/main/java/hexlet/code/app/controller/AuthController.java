@@ -1,26 +1,33 @@
 package hexlet.code.app.controller;
 
-import hexlet.code.app.model.LoginRequest;
-import hexlet.code.app.model.LoginResponse;
-import hexlet.code.app.repository.UserRepository;
-import hexlet.code.app.service.AuthService;
+import hexlet.code.app.dto.AuthRequest;
+import hexlet.code.app.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/login")
 public class AuthController {
+    @Autowired
+    private JWTUtils jwtUtils;
 
     @Autowired
-    private UserRepository userRepository;
+    private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private AuthService authService;
+    @PostMapping("")
+    public String create(@RequestBody AuthRequest authRequest) {
+        var authentication = new UsernamePasswordAuthenticationToken(
+                authRequest.getUsername(), authRequest.getPassword());
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-        String token = authService.login(loginRequest);
-        return ResponseEntity.ok(new LoginResponse(token));
+        authenticationManager.authenticate(authentication);
+
+        var token = jwtUtils.generateToken(authRequest.getUsername());
+        return token;
     }
 }

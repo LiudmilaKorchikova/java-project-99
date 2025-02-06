@@ -3,13 +3,10 @@ package hexlet.code.app.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -31,6 +28,7 @@ public class User extends BaseEntity implements UserDetails {
     @NotBlank
     private String passwordDigest;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Override

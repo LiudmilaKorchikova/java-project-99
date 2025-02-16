@@ -8,6 +8,6 @@ spring:
 rsa:
   private-key: classpath:private.pem
   public-key: classpath:public.pem
-server:
-  servlet:
-    context-path: /myApp
+logging:
+  level:
+    org.springframework.security: TRACE
